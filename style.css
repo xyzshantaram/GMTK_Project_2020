@@ -1,0 +1,60 @@
+#canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#mask {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background: rgba(24, 24, 24, 0.75);
+}
+
+#mask-header {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    font-size: 72px;
+    top: 20%;
+    left: 0%;
+    z-index: 3;
+}
+
+#mask-subtext {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+    top: 40%;
+    left: 0%;
+    font-style: italic;
+    color: rgba(250, 244, 232, 1);
+    z-index: 3;
+}
+
+html, body {
+    margin: 0;
+    background-color: #303030;
+    color: #f5f4f0;
+    user-select: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;    
+    padding: 0;
+    scrollbar-width: none;
+}
