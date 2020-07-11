@@ -90,6 +90,11 @@ class Vector2 {
         this.y = clamp(this.y, v1.x, v1.y);
     }
 
+    clamp(v1, v2) {
+        this.x = clamp(this.x, v1.x, v1.y);
+        this.y = clamp(this.y, v2.x, v2.y);
+    }
+
     scalarRangeCheck (s) {
         return this.len() > s;
     }

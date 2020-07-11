@@ -79,22 +79,6 @@ class Rectangle {
         this.height = height;
     }
 
-    isColliding(circle) {
-        // clamp(value, min, max) - limits value to the range min..max
-
-        // Find the closest point to the circle within the rectangle
-        let closestX = clamp(circle.pos.x, this.pos.x, this.pos.x + this.width);
-        let closestY = clamp(circle.pos.y, this.pos.y, this.pos.y + this.height);
-
-        // Calculate the distance between the circle's center and this closest point
-        let distanceX = circle.pos.x - closestX;
-        let distanceY = circle.pos.y - closestY;
-
-        // If the distance is less than the circle's radius, an intersection occurs
-        let distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-        return distanceSquared < (circle.radius * circle.radius);
-    }
-
     draw() {
         Game.ctx.beginPath();
         Game.ctx.rect(this.pos.x, this.pos.y, this.width, this.height);
@@ -105,19 +89,6 @@ class Rectangle {
         Game.ctx.strokeStyle = color;
         Game.ctx.rect(this.pos.x, this.pos.y, this.width, this.height);
         Game.ctx.stroke();        
-    }
-}
-
-class Circle {
-    constructor(pos, radius) {
-        this.pos = pos;
-        this.radius = radius;
-    }
-
-    isColliding(rect) {        
-        return (this.pos.x > rect.pos.x &&
-        this.pos.x < rect.pos.x + rect.width &&
-        this.pos.y > rect.pos.y && this.pos.y < rect.pos.y + rect.height);
     }
 }
 
@@ -147,9 +118,22 @@ Game.focusHandler = function () {
 
 Game.scaleCanvas = function () {
     Game.canvasScale.x = Game.canvas.width / document.body.clientWidth;
-    Game.canvasScale.y = Game.canvas.height / document.body.clientWidth;
+    Game.canvasScale.y = Game.canvas.height / document.body.clientHeight;
+
+    Game.mainCamera.wWidth = (document.body.clientWidth / 2);
+    Game.mainCamera.wHeight = (document.body.clientHeight / 2);
 }
 
 function clearChildren(id) {
     document.getElementById(id).innerHTML = "";
 }
+
+function checkRects(rect1, rect2) {
+    if (rect1.pos.x < rect2.pos.x + rect2.width &&
+      rect1.pos.x + rect1.width > rect2.pos.x &&
+      rect1.pos.y < rect2.pos.y + rect2.height &&
+      rect1.pos.y + rect1.height > rect2.pos.y) {
+      return true;
+    }
+    return false;
+  }

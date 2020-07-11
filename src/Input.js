@@ -1,13 +1,14 @@
 Game.Input.handler = function() {
-    if (window.pressedKeys.includes(Game.Config.LEFT_KEY)) {
-
+    if (Game.Input.isKeyDown(Game.Config.LEFT_KEY)) {
+        Game.Player.vel.x += Game.moveVel;
     }
-    if (window.pressedKeys.includes(Game.Config.RIGHT_KEY)) {
-
+    if (Game.Input.isKeyDown(Game.Config.RIGHT_KEY)) {
+        Game.Player.vel.x -= Game.moveVel;
     }
-
-    if (window.pressedKeys.includes(Game.Config.JUMP_KEY)) {
-
+    if (Game.Input.isKeyDown(' ')) {
+        if (!Game.Player.collisionCount == 0)
+        Game.Player.vel.y = -Game.jumpVel;
+        Game.Player.collisionCount = 0;
     }
 }
 
@@ -47,28 +48,10 @@ Game.Input.keyDownHandler = function (e) {
 
 Game.Input.keyUpHandler = function (e) {
     window.pressedKeys[e.key] = false;
-
     if (e.key === 'e' && !Game.isPaused()) {
     }
-
     if (e.key === 'Escape') {
         Game.isPaused() ? Game.setPause(false) : Game.setPause(true);
-    }
-}
-
-Game.Input.keyHandler = function () {
-
-    if (Game.Input.isKeyDown('w')) {
-        player.move(Game.Directions.UP, 0.5);
-    }
-    if (Game.Input.isKeyDown('a')) {
-        player.move(Game.Directions.LEFT, 0.5);
-    }
-    if (Game.Input.isKeyDown('s')) {
-        player.move(Game.Directions.DOWN, 0.5);
-    }
-    if (Game.Input.isKeyDown('d')) {
-        player.move(Game.Directions.RIGHT, 0.5);
     }
 }
 

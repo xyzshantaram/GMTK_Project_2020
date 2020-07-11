@@ -1,36 +1,22 @@
-let Game = {
-    tileSize: 32,
-    canvas: {},
-    ctx: {},
-    Input: {},
-    Config: {},
-    canvasScale: {
-        x: 1,
-        y: 1
-    },
-    UI: {}, 
-    Player: {},
-    Scene: {
-        entities: []
-    }
-};
 
-let mouse = {
-    x: 0,
-    y: 0,
-};
-
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
 function init() {
     Game.canvas = document.getElementById("canvas");
 
     Game.canvas.width = document.body.clientWidth;
     Game.canvas.height = document.body.clientHeight;
 
+    Game.ctx = canvas.getContext("2d");
+
     Game.UI.mask = document.getElementById("mask");
     Game.UI.maskSubtext = document.getElementById("mask-subtext");
     Game.UI.maskHeader = document.getElementById("mask-header");
 
-    Game.ctx = canvas.getContext("2d");
+    Game.Player = new Entity(new Vector2(40, 40), "Player", undefined, Game.tileSize, Game.tileSize);
+    Game.entities.push(new Entity (new Vector2(20, 400), "platform", undefined, 80, 20));
+    Game.entities.push(new Entity (new Vector2(0, Game.canvas.height), "platform", undefined, Game.canvas.width, 10));
+    Game.entities.push(Game.Player);
+    Game.mainCamera = new Camera(Game.Player, 10);
 
     var divs = document.getElementsByTagName("div");
 
@@ -44,7 +30,7 @@ function init() {
         });
     }
 
-    window.addEventListener("keypress", Game.Input.keyDownHandler);
+    window.addEventListener("keydown", Game.Input.keyDownHandler);
     window.addEventListener("keyup", Game.Input.keyUpHandler);
     window.addEventListener("mousedown", Game.Input.mouseDownHandler);
     window.addEventListener("mouseup", Game.Input.mouseUpHandler);

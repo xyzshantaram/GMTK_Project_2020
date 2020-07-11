@@ -1,6 +1,7 @@
 class Camera {
     constructor(focusPoint, speed) {
         this.focusPoint = focusPoint || Game.Player;
+        this.targetPos = new Vector2(0, 0)
         this.pos = new Vector2(0, 0);
         this.vWidth = Game.canvas.width / 2;
         this.vHeight = Game.canvas.height / 2;
@@ -8,9 +9,9 @@ class Camera {
     }
 
     focus() {
-        if (this.focusPoint.pos.x >= this.vWidth.x)
+        if (this.focusPoint.pos.x < this.vWidth)
             this.targetPos.x = this.vWidth - this.focusPoint.pos.x;
-        if (this.focusPoint.pos.y >= this.vHeight.y)
+        if (this.focusPoint.pos.y > this.vHeight)
             this.targetPos.y = this.vHeight - this.focusPoint.pos.y;
             this.pos.round();
     }
@@ -18,7 +19,7 @@ class Camera {
     update() {
         this.pos.x += (this.targetPos.x - this.pos.x) / this.speed;
         this.pos.y += (this.targetPos.y - this.pos.y) / this.speed;
-        Game.ctx.translate(Game.canvasScale.x * this.pos.x, Game.canvasScale.y * this.pos.y);
+        Game.ctx.translate(this.pos.x, this.pos.y);
     }
 
     updateFocusPoint(newFocusPoint) {
