@@ -22,3 +22,10 @@ Game.UI.hideMask = function() {
     Game.UI.setMaskOpacity(0);
     Game.UI.mask.style.display = 'none';
 }
+
+Game.UI.setMaskContents = function(opacity, heading, description) {
+    Game.UI.setMaskOpacity(opacity);
+    Game.UI.maskHeader.innerHTML = heading;
+    Game.UI.maskSubtext.innerHTML = description;
+
+}
