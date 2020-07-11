@@ -147,7 +147,7 @@ Game.focusHandler = function () {
 
 Game.scaleCanvas = function () {
     Game.canvasScale.x = Game.canvas.width / document.body.clientWidth;
-    Game.canvasScale.y = Game.canvas.height / document.body.clientHeight;
+    Game.canvasScale.y = Game.canvas.height / document.body.clientWidth;
 }
 
 function clearChildren(id) {

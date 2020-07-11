@@ -1,5 +1,14 @@
 Game.Input.handler = function() {
+    if (window.pressedKeys.includes(Game.Config.LEFT_KEY)) {
 
+    }
+    if (window.pressedKeys.includes(Game.Config.RIGHT_KEY)) {
+
+    }
+
+    if (window.pressedKeys.includes(Game.Config.JUMP_KEY)) {
+
+    }
 }
 
 Game.Input.rightMouseClicked = false;
@@ -66,3 +75,4 @@ Game.Input.keyHandler = function () {
 Game.Input.isKeyDown = function (k) {
     return window.pressedKeys[k];
 }
+
