@@ -8,10 +8,20 @@ function init() {
     Game.canvas.height = document.body.clientHeight;
 
     Game.ctx = canvas.getContext("2d");
+    Game.ctx.imageSmoothingEnabled = false;
+
+    Game.musicContext = new AudioContext();
+    Game.sfxContext = new AudioContext();
 
     Game.UI.mask = document.getElementById("mask");
     Game.UI.maskSubtext = document.getElementById("mask-subtext");
     Game.UI.maskHeader = document.getElementById("mask-header");
+    Game.UI.btnWrapper = document.getElementById("button-wrapper");
+    Game.UI.textBox = document.getElementById('text-box');
+    Game.UI.npcName = document.getElementById('npc-name');
+    Game.UI.dialogueBox = document.getElementById('dialogue');
+    Game.UI.healthBar = document.getElementById('health-value');
+    Game.UI.healthText = document.getElementById('health-value-text');
 
     Game.Player = new Entity(new Vector2(40, 40), "Player", undefined, Game.tileSize, Game.tileSize);
     Game.entities.push(new Entity (new Vector2(80, 340), "platform", undefined, 80, 20));
@@ -57,21 +67,20 @@ function init() {
 
     Game.setPause(false);
 
-    assets = new AssetManager(
-        function() {
+    assets = new AssetManager(function() {
             Game.loadScene(assets.getAsset("SceneData.json"), function() {
-                window.requestAnimationFrame(draw);
+                
             });
         }
     );
 
     assets.queueItems([
-        new FileInfo("mc_idle.png", "assets/img/mc_idle.png", "img"),
-        new FileInfo("mc_jump.png", "assets/img/mc_jump.png", "img"),
-        new FileInfo("mc_run_left.png", "assets/img/mc_run_left.png", "img"),
-        new FileInfo("mc_run_right.png", "assets/img/mc_run_left.png", "img"),
-        new FileInfo("mc_idle_right.png", "assets/img/mc_idle_right.png", "img"),
-        new FileInfo("mc_idle_left.png", "assets/img/mc_idle_left.png", "img"),
+        new FileInfo("ss_4_mc_idle.png", "assets/img/ss_4_mc_idle.png", "img"),
+        new FileInfo("ss_2_mc_jump.png", "assets/img/ss_2_mc_jump.png", "img"),
+        new FileInfo("ss_8_mc_runL.png", "assets/img/ss_8_mc_runL.png", "img"),
+        new FileInfo("ss_8_mc_runR.png", "assets/img/ss_8_mc_runR.png", "img"),
+/*         new FileInfo("ss_1_mc_idleR.png", "assets/img/ss_1_mc_idleR.png", "img"),
+        new FileInfo("ss_1_mc_idleL.png", "assets/img/ss_1_mc_idleL.png", "img"), */
         new FileInfo("sample.mp3", "assets/audio/music.mp3", "audio"),
         new FileInfo("SceneData.json", "assets/text/SceneData.json", "text"),
         new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.jpg", "img")

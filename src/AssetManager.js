@@ -8,6 +8,7 @@ class AssetManager {
 
     loadAll() {
         let that = this;
+        that.numFiles = that.queue.length;
         for (let x of this.queue) {
             let xhr = new XMLHttpRequest();
             xhr.open("GET", x.url);
@@ -27,8 +28,10 @@ class AssetManager {
                     that.results[x.name] = xhr.response;
                 }
                 that.successCount++;
+                that.queue.remove(x);
                 if (that.isDone()) {
                     that.callback();
+                    console.log('called')
                 }
             }
         }
@@ -42,7 +45,7 @@ class AssetManager {
     }
 
     isDone() {
-        return(this.queue.length == this.successCount);
+        return(this.numFiles == this.successCount);
     }
 
     getAsset(name) {
