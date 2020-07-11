@@ -18,9 +18,9 @@ class AssetManager {
                     createImageBitmap(xhr.response).then(
                         function(result) {
                             that.results[x.name] = result;
-                            Game.UI.hideMask();
                         }
                     ).catch(function(err) {
+                        alert("An error occurred. Please reload. It'll work eventually, promise!")
                     })
                 }
                 else {

@@ -1,5 +1,6 @@
 Game.UI.setMaskOpacity = function(s) {
     Game.UI.mask.style.display = 'initial';
+    
     Game.UI.mask.style.opacity = "" + s;
 }
 
@@ -20,11 +21,14 @@ Game.UI.setUnpaused = function() {
 
 Game.UI.hideMask = function() {
     Game.UI.setMaskOpacity(0);
+    Game.UI.maskHeader.innerHTML = "";
+    Game.UI.maskSubtext.innerHTML = "";
     Game.UI.mask.style.display = 'none';
 }
 
 Game.UI.setMaskContents = function(opacity, heading, description) {
     Game.UI.setMaskOpacity(opacity);
+    Game.UI.mask.style.display = 'initial';
     Game.UI.maskHeader.innerHTML = heading;
     Game.UI.maskSubtext.innerHTML = description;
 

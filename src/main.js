@@ -1,5 +1,4 @@
 function draw() {
-
     Game.ctx.setTransform(1, 0, 0, 1, 0, 0);
     if (!Game.isPaused()) {
         Game.ctx.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
