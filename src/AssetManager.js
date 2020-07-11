@@ -18,6 +18,7 @@ class AssetManager {
                     createImageBitmap(xhr.response).then(
                         function(result) {
                             that.results[x.name] = result;
+                            Game.UI.hideMask();
                         }
                     ).catch(function(err) {
                     })
