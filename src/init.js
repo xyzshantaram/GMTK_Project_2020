@@ -13,9 +13,6 @@ function init() {
     Game.UI.maskSubtext = document.getElementById("mask-subtext");
     Game.UI.maskHeader = document.getElementById("mask-header");
 
-    Game.UI.setMaskOpacity(1);
-    Game.UI.setMaskContents(1, "", "loading...");
-
     Game.Player = new Entity(new Vector2(40, 40), "Player", undefined, Game.tileSize, Game.tileSize);
     Game.entities.push(new Entity (new Vector2(80, 340), "platform", undefined, 80, 20));
     Game.entities.push(new Entity (new Vector2(40, 400), "platform", undefined, 80, 20));
