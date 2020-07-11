@@ -6,7 +6,7 @@ Game.Input.handler = function() {
         Game.Player.vel.x -= Game.moveVel;
     }
     if (Game.Input.isKeyDown(' ')) {
-        if (!Game.Player.collisionCount == 0)
+        if (!(Game.Player.collisionCount < 1))
         Game.Player.vel.y = -Game.jumpVel;
         Game.Player.collisionCount = 0;
     }

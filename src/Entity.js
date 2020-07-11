@@ -37,25 +37,33 @@ class Entity {
 
             this.resolveCollisions();
         }
+        if (["Enemy", "Player"].includes(this.type))
+            this.pos.clamp(new Vector2(11, 1920), new Vector2(10, 1080));
     }
 
     resolveCollision(x) {
         let dx, dy;
-        dx = Math.abs(deltaX(x, this));
-        dy = Math.abs(deltaY(x, this));
+        dx = this.pos.x - x.pos.x;
+        dy = this.pos.y - x.pos.y;
 
-        if (dy > 0) {
-            this.vel.y = 0;
-            this.pos.y = x.pos.y - this.height;
+        if (dx > dy) {
+            if (dy > 0) {
+                this.vel.y = -this.vel.y;
+                this.pos.y = x.pos.y + x.height;
+            }
+    
+            if (dy < 0) {
+                this.vel.y = 0;
+                this.pos.y = x.pos.y - this.height;
+            }
         }
-
-        if (dy < 0) {
-            this.vel.y = -this.vel.y;
-            this.pos.y = x.pos.y;
-        }
-
-        if (x.type === "platform") {
-            this.vel.y = 0;
+        else {
+            if (dx > 0) {
+                this.pos.x = x.pos.x + x.width;
+            }
+            else {
+                this.pos.x = x.pos.x - this.width;
+            }
         }
     }
 
@@ -67,7 +75,10 @@ class Entity {
                 }
                 else {
                     this.resolveCollision(x);
-                    this.collisionCount += 1;
+                    if (this.type === 'Player' && x.type === "platform") {
+                        this.collisionCount += 1;
+                        console.log(this.collisionCount);
+                    }
                 }
             }
         }

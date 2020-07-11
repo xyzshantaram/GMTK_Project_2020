@@ -9,9 +9,7 @@ class Camera {
     }
 
     focus() {
-        if (this.focusPoint.pos.x < this.vWidth)
             this.targetPos.x = this.vWidth - this.focusPoint.pos.x;
-        if (this.focusPoint.pos.y > this.vHeight)
             this.targetPos.y = this.vHeight - this.focusPoint.pos.y;
             this.pos.round();
     }

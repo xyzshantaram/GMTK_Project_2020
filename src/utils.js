@@ -136,4 +136,4 @@ function checkRects(rect1, rect2) {
       return true;
     }
     return false;
-  }
+}

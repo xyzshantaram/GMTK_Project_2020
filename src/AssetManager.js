@@ -14,7 +14,17 @@ class AssetManager {
             xhr.responseType = (x.type === "img") ? "blob" : ((x.type === "audio") ? "arraybuffer" : "text");
             xhr.send();
             xhr.onload = function () {
-                that.results[x.name] = xhr.response;
+                if (this.responseType === "blob") {
+                    createImageBitmap(xhr.response).then(
+                        function(result) {
+                            that.results[x.name] = result;
+                        }
+                    ).catch(function(err) {
+                    })
+                }
+                else {
+                    that.results[x.name] = xhr.response;
+                }
                 that.successCount++;
                 if (that.isDone()) {
                     that.callback();

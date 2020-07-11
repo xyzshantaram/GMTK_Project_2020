@@ -1,3 +1,4 @@
+let assets;
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 function init() {
@@ -13,8 +14,14 @@ function init() {
     Game.UI.maskHeader = document.getElementById("mask-header");
 
     Game.Player = new Entity(new Vector2(40, 40), "Player", undefined, Game.tileSize, Game.tileSize);
-    Game.entities.push(new Entity (new Vector2(20, 400), "platform", undefined, 80, 20));
-    Game.entities.push(new Entity (new Vector2(0, Game.canvas.height), "platform", undefined, Game.canvas.width, 10));
+    Game.entities.push(new Entity (new Vector2(80, 340), "platform", undefined, 80, 20));
+    Game.entities.push(new Entity (new Vector2(40, 400), "platform", undefined, 80, 20));
+    Game.entities.push(new Entity (new Vector2(0, 1080), "platform", undefined, 1920, 10));
+    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 1920, 10));
+
+    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 10, 1080));
+    Game.entities.push(new Entity (new Vector2(1920, 0), "platform", undefined, 10, 1080));
+
     Game.entities.push(Game.Player);
     Game.mainCamera = new Camera(Game.Player, 10);
 
@@ -50,9 +57,10 @@ function init() {
 
     Game.setPause(false);
 
-    let assets = new AssetManager(
+    assets = new AssetManager(
         function() {
             Game.loadScene(assets.getAsset("SceneData.json"), function() {
+                
                 window.requestAnimationFrame(draw);
             });
         }
@@ -66,7 +74,8 @@ function init() {
         new FileInfo("mc_idle_right.png", "assets/img/mc_idle_right.png", "img"),
         new FileInfo("mc_idle_left.png", "assets/img/mc_idle_left.png", "img"),
         new FileInfo("sample.mp3", "assets/audio/music.mp3", "audio"),
-        new FileInfo("SceneData.json", "assets/text/SceneData.json", "text")
+        new FileInfo("SceneData.json", "assets/text/SceneData.json", "text"),
+        new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.jpg", "img")
     ])
 
     assets.loadAll();
