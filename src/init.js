@@ -56,8 +56,8 @@ function init() {
     });
 
     window.addEventListener("mousemove", (e) => {
-        mouse.x = e.clientX * Game.canvasScale.x;
-        mouse.y = e.clientY * Game.canvasScale.y;
+        mouse.x = e.clientX * 2 * Game.canvasScale.x;
+        mouse.y = e.clientY * 2 * Game.canvasScale.y;
     });
 
     window.addEventListener("blur", Game.blurHandler);
@@ -71,14 +71,15 @@ function init() {
 
     assets.queueItems([
         new FileInfo("ss_4_mc_idle.png", "assets/img/ss_4_mc_idle.png", "img"),
-        new FileInfo("ss_2_mc_jump.png", "assets/img/ss_2_mc_jump.png", "img"),
+        new FileInfo("ss_1_mc_jump.png", "assets/img/ss_1_mc_jump.png", "img"),
         new FileInfo("ss_8_mc_runL.png", "assets/img/ss_8_mc_runL.png", "img"),
         new FileInfo("ss_8_mc_runR.png", "assets/img/ss_8_mc_runR.png", "img"),
 /*         new FileInfo("ss_1_mc_idleR.png", "assets/img/ss_1_mc_idleR.png", "img"),
         new FileInfo("ss_1_mc_idleL.png", "assets/img/ss_1_mc_idleL.png", "img"), */
         new FileInfo("sample.mp3", "assets/audio/music.mp3", "audio"),
         new FileInfo("SceneData.json", "assets/text/SceneData.json", "text"),
-        new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.png", "img")
+        new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.png", "img"),
+        new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.png", "img"),
     ])
 
     assets.loadAll();

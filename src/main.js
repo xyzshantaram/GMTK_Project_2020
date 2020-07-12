@@ -1,5 +1,5 @@
 function draw() {
-    Game.ctx.setTransform(1, 0, 0, 1, 0, 0);
+    Game.ctx.setTransform(2, 0, 0, 2, 0, 0);
     if (!Game.isPaused()) {
         Game.ctx.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
         Game.ctx.scale(Game.canvasScale.x, Game.canvasScale.y);
