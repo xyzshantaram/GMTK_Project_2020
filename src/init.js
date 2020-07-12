@@ -22,6 +22,8 @@ function init() {
     Game.UI.healthBar = document.getElementById('health-value');
     Game.UI.healthText = document.getElementById('health-value-text');
 
+    Game.UI.hideTextBox();  
+
     Game.Player = new Entity(new Vector2(40, 40), "Player", undefined, Game.tileSize, Game.tileSize);
     Game.entities.push(new Entity (new Vector2(80, 340), "platform", undefined, 80, 20));
     Game.entities.push(new Entity (new Vector2(40, 400), "platform", undefined, 80, 20));
@@ -80,6 +82,10 @@ function init() {
         new FileInfo("SceneData.json", "assets/text/SceneData.json", "text"),
         new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.png", "img"),
         new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.png", "img"),
+        new FileInfo("clickSFX.mp3", "assets/audio/clickSFX.mp3", "audio"),
+        new FileInfo("footstepsSFX.mp3", "assets/audio/footstepsSFX.mp3", "audio"),
+        new FileInfo("maybeLevelTheme.mp3", "assets/audio/maybeLevelTheme.mp3", "audio"),
+        new FileInfo("menuTheme.mp3", "assets/audio/menuTheme.mp3", "audio")
     ])
 
     assets.loadAll();

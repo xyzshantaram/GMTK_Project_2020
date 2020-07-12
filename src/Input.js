@@ -27,6 +27,7 @@ Game.Input.mouseUpHandler = function (e) {
 }
 
 Game.Input.mouseDownHandler = function(e) {
+    Audio.playSFX('clickSFX.mp3')
     if (e.button === MOUSE_VALUES.RIGHT) {
         Game.Input.rightMouseClicked = true;
     }
