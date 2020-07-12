@@ -60,10 +60,8 @@ Game.UI.closeDialogue = function () {
     setTimeout(Game.UI.hideTextBox, Game.UI.dialogueFadeTime);
 }
 
-
-
-Game.UI.healthBarDelta = 0.5;
-Game.UI.healthBarIncrementTime = 50;
+Game.UI.healthBarDelta = 1.6;
+Game.UI.healthBarIncrementTime = 1000;
 Game.UI.healthBarTimeouts = []
 
 Game.UI.setHealthBarPercentage = function (s) {

@@ -10,8 +10,7 @@ function init() {
     Game.ctx = canvas.getContext("2d");
     Game.ctx.imageSmoothingEnabled = false;
 
-    Game.musicContext = new AudioContext();
-    Game.sfxContext = new AudioContext();
+    Game.audioCtx = new AudioContext();
 
     Game.UI.mask = document.getElementById("mask");
     Game.UI.maskSubtext = document.getElementById("mask-subtext");
@@ -65,12 +64,8 @@ function init() {
     window.addEventListener("focus", Game.focusHandler);
     window.pressedKeys = [];
 
-    Game.setPause(false);
-
     assets = new AssetManager(function() {
-            Game.loadScene(assets.getAsset("SceneData.json"), function() {
-                
-            });
+            Game.loadScene(assets.getAsset("SceneData.json"), function() { console.log('ready.;') });
         }
     );
 
@@ -83,7 +78,7 @@ function init() {
         new FileInfo("ss_1_mc_idleL.png", "assets/img/ss_1_mc_idleL.png", "img"), */
         new FileInfo("sample.mp3", "assets/audio/music.mp3", "audio"),
         new FileInfo("SceneData.json", "assets/text/SceneData.json", "text"),
-        new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.jpg", "img")
+        new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.png", "img")
     ])
 
     assets.loadAll();
