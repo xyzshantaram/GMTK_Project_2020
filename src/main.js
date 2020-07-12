@@ -7,11 +7,9 @@ function draw() {
         
         Game.mainCamera.focus();
         Game.mainCamera.update();
-
-        Game.ctx.fillStyle = '#007cdf';
+        Game.ctx.fillStyle = '#98a3af';
         Game.ctx.drawImage(Game.BG, 0, 0);
 
-        Game.ctx.fillStyle = 'green';
         for (let x of Game.entities) {
             x.update();
             x.draw();

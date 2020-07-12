@@ -24,7 +24,8 @@ function init() {
 
     Game.UI.hideTextBox();  
 
-    Game.Player = new Entity(new Vector2(40, 40), "Player", undefined, Game.tileSize, Game.tileSize);
+    Game.Player = new Entity(new Vector2(80, 308), "Player", undefined, Game.tileSize, Game.tileSize);
+    Game.entities.push(test);
     Game.entities.push(new Entity (new Vector2(80, 340), "platform", undefined, 80, 20));
     Game.entities.push(new Entity (new Vector2(40, 400), "platform", undefined, 80, 20));
     Game.entities.push(new Entity (new Vector2(0, 1080), "platform", undefined, 1920, 10));
