@@ -65,6 +65,7 @@ class Entity {
                 this.trigger = undefined;
             }
         }
+        this.pos.x = Math.round(this.pos.x);
     }
 
     resolveCollision(x) {

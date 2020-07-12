@@ -14,7 +14,7 @@ let Game = {
 
     },
     entities: [],
-    jumpVel: 10,
+    jumpVel: 8,
     moveVel: 0.5,
     friction: 0.2
 };

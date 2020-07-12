@@ -22,6 +22,7 @@ class AnimatedSprite {
     draw(pos) {
         if (this.anims[this.poseName]) {
             let spritePos = this.spriteList[Math.floor(this.anims[this.poseName].count) % this.spriteList.length];
+            if (spritePos)
             Game.ctx.drawImage(assets.getAsset(`ss_${this.spriteList.length}_${this.poseName}.png`),
                 spritePos.x, spritePos.y,
                 Game.tileSize, Game.tileSize, pos.x, pos.y, Game.tileSize, Game.tileSize

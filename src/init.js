@@ -24,15 +24,26 @@ function init() {
 
     Game.UI.hideTextBox();  
 
-    Game.Player = new Entity(new Vector2(80, 308), "Player", undefined, Game.tileSize, Game.tileSize);
-    Game.entities.push(test);
-    Game.entities.push(new Entity (new Vector2(80, 340), "platform", undefined, 80, 20));
-    Game.entities.push(new Entity (new Vector2(40, 400), "platform", undefined, 80, 20));
-    Game.entities.push(new Entity (new Vector2(0, 1080), "platform", undefined, 1920, 10));
-    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 1920, 10));
+    Game.Player = new Entity(new Vector2(400, 448), "Player", undefined, Game.tileSize, Game.tileSize);
+    Game.entities.push(new Entity(new Vector2(0, 288), "platform", undefined, 1280, 10));
+    Game.entities.push(new Entity (new Vector2(0, 720), "platform", undefined, 1280, 10));
+    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 1280, 10));
 
-    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 10, 1080));
-    Game.entities.push(new Entity (new Vector2(1920, 0), "platform", undefined, 10, 1080));
+    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 10, 720));
+    Game.entities.push(new Entity (new Vector2(1280, 0), "platform", undefined, 10, 730));
+    Game.entities.push(new Entity (new Vector2(446, 288), "platform", undefined, 10, 350));
+    
+    Game.entities.push(new Entity (new Vector2(0, 480), "platform", undefined, 200, 10));
+    Game.entities.push(new Entity (new Vector2(260, 480), "platform", undefined, 350, 10));
+    Game.entities.push(new Entity (new Vector2(610, 480), "platform", undefined, 10, 158));
+    Game.entities.push(new Entity (new Vector2(200, 480), "platform", undefined, 10, 240));
+
+    toilet = new Entity (new Vector2(520, 688), "KTRIGGER", undefined, 32, 32, "yellow");
+    toilet.action = () => {alert('todo: embed toilet frame')}
+    Game.entities.push(toilet);
+    Game.entities.push(new Entity (new Vector2(200, 480), "platform", undefined, 10, 240, "#007cdf"));
+    
+
 
     Game.entities.push(Game.Player);
     Game.mainCamera = new Camera(Game.Player, 10);
