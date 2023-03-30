@@ -5,10 +5,10 @@ let Game = {
     Input: {},
     Config: {},
     canvasScale: {
-        x: 1,
-        y: 1
+        x: 0.8,
+        y: 0.8
     },
-    UI: {}, 
+    UI: {},
     Player: {},
     Scene: {
 

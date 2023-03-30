@@ -22,31 +22,30 @@ function init() {
     Game.UI.healthBar = document.getElementById('health-value');
     Game.UI.healthText = document.getElementById('health-value-text');
 
-    Game.UI.hideTextBox();  
+    Game.UI.hideTextBox();
 
     Game.Player = new Entity(new Vector2(400, 448), "Player", undefined, Game.tileSize, Game.tileSize);
     Game.entities.push(new Entity(new Vector2(0, 288), "platform", undefined, 1280, 10));
-    Game.entities.push(new Entity (new Vector2(0, 720), "platform", undefined, 1280, 10));
-    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 1280, 10));
+    Game.entities.push(new Entity(new Vector2(0, 720), "platform", undefined, 1280, 10));
+    Game.entities.push(new Entity(new Vector2(0, 0), "platform", undefined, 1280, 10));
 
-    Game.entities.push(new Entity (new Vector2(0, 0), "platform", undefined, 10, 720));
-    Game.entities.push(new Entity (new Vector2(1280, 0), "platform", undefined, 10, 730));
-    Game.entities.push(new Entity (new Vector2(446, 288), "platform", undefined, 10, 350));
-    
-    Game.entities.push(new Entity (new Vector2(0, 480), "platform", undefined, 200, 10));
-    Game.entities.push(new Entity (new Vector2(260, 480), "platform", undefined, 350, 10));
-    Game.entities.push(new Entity (new Vector2(610, 480), "platform", undefined, 10, 158));
-    Game.entities.push(new Entity (new Vector2(200, 480), "platform", undefined, 10, 240));
+    Game.entities.push(new Entity(new Vector2(0, 0), "wall", undefined, 10, 720));
+    Game.entities.push(new Entity(new Vector2(1280, 0), "wall", undefined, 10, 730));
+    Game.entities.push(new Entity(new Vector2(446, 288), "wall", undefined, 10, 350));
 
-    toilet = new Entity (new Vector2(520, 688), "KTRIGGER", undefined, 32, 32, "yellow");
-    toilet.action = () => {alert('todo: embed toilet frame')}
+    Game.entities.push(new Entity(new Vector2(0, 480), "platform", undefined, 200, 10));
+    Game.entities.push(new Entity(new Vector2(260, 480), "platform", undefined, 350, 10));
+    Game.entities.push(new Entity(new Vector2(610, 480), "wall", undefined, 10, 158));
+
+    toilet = new Entity(new Vector2(520, 688), "KTRIGGER", undefined, 32, 32, "yellow");
+    toilet.action = () => { alert('todo: embed toilet frame') }
     Game.entities.push(toilet);
-    Game.entities.push(new Entity (new Vector2(200, 480), "platform", undefined, 10, 240, "#007cdf"));
-    
+    Game.entities.push(new Entity(new Vector2(200, 480), "platform", undefined, 10, 240, "#007cdf"));
+
 
 
     Game.entities.push(Game.Player);
-    Game.mainCamera = new Camera(Game.Player, 10);
+    Game.mainCamera = new Camera(Game.Player, 1);
 
     var divs = document.getElementsByTagName("div");
 
@@ -78,9 +77,9 @@ function init() {
     window.addEventListener("focus", Game.focusHandler);
     window.pressedKeys = [];
 
-    assets = new AssetManager(function() {
-            Game.loadScene(assets.getAsset("SceneData.json"), function() { console.log('ready.;') });
-        }
+    assets = new AssetManager(function () {
+        Game.loadScene(assets.getAsset("SceneData.json"), () => { console.log('ready.') });
+    }
     );
 
     assets.queueItems([
@@ -88,8 +87,6 @@ function init() {
         new FileInfo("ss_1_mc_jump.png", "assets/img/ss_1_mc_jump.png", "img"),
         new FileInfo("ss_8_mc_runL.png", "assets/img/ss_8_mc_runL.png", "img"),
         new FileInfo("ss_8_mc_runR.png", "assets/img/ss_8_mc_runR.png", "img"),
-/*         new FileInfo("ss_1_mc_idleR.png", "assets/img/ss_1_mc_idleR.png", "img"),
-        new FileInfo("ss_1_mc_idleL.png", "assets/img/ss_1_mc_idleL.png", "img"), */
         new FileInfo("sample.mp3", "assets/audio/music.mp3", "audio"),
         new FileInfo("SceneData.json", "assets/text/SceneData.json", "text"),
         new FileInfo("Website-test-grid.jpg", "assets/img/Website-test-grid.png", "img"),

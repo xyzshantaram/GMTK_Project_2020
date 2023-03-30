@@ -3,13 +3,11 @@ function draw() {
     if (!Game.isPaused()) {
         Game.ctx.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
         Game.ctx.scale(Game.canvasScale.x, Game.canvasScale.y);
-        Game.Input.handler();
-        
+
+        Game.ctx.drawImage(Game.BG, 0, 0);
+
         Game.mainCamera.focus();
         Game.mainCamera.update();
-        Game.ctx.fillStyle = '#444444';
-        Game.ctx.fillRect(0, 0, 1280,  720);
-
         Game.ctx.fillStyle = 'limegreen';
         Game.ctx.font = '15px Monospace';
         Game.ctx.fillText("Welcome. This is incomplete, but playable.", 100, 360);
@@ -22,6 +20,8 @@ function draw() {
             x.update();
             x.draw();
         }
+
+        Game.Input.handler();
     }
     window.requestAnimationFrame(draw);
 }

@@ -9,15 +9,15 @@ class Camera {
     }
 
     focus() {
-            this.targetPos.x = this.vWidth - 2 * this.focusPoint.pos.x;
-            this.targetPos.y = this.vHeight - 2 * this.focusPoint.pos.y;
-            this.pos.round();
+        this.targetPos.x = this.vWidth - 2 * this.focusPoint.pos.x;
+        this.targetPos.y = this.vHeight - 2 * this.focusPoint.pos.y;
+        this.pos.round();
     }
 
     update() {
         this.pos.x += (this.targetPos.x - this.pos.x) / this.speed;
         this.pos.y += (this.targetPos.y - this.pos.y) / this.speed;
-        Game.ctx.translate(Math.round(0.5 * this.pos.x),Math.round(0.5 * this.pos.y));
+        Game.ctx.translate(Math.round(0.5 * this.pos.x), Math.round(0.5 * this.pos.y));
     }
 
     updateFocusPoint(newFocusPoint) {

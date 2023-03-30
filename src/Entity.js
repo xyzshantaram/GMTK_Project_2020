@@ -14,9 +14,9 @@ class Entity {
 
     draw() {
         Game.fillStyle = 'gray';
-        if (this.spriteObject) 
+        if (this.spriteObject)
             this.spriteObject.draw(this.pos);
-         else {
+        else {
             if (this.color)
                 Game.ctx.fillStyle = this.color;
             Game.ctx.fillRect(this.pos.x, this.pos.y, this.width, this.height);
@@ -30,7 +30,7 @@ class Entity {
 
             if (this.vel.x > Game.friction) {
                 this.vel.x -= Game.friction;
-            } else if (this.vel.x<-Game.friction) {
+            } else if (this.vel.x < -Game.friction) {
                 this.vel.x += Game.friction;
             }
             else {
@@ -45,7 +45,7 @@ class Entity {
             this.pos.clamp(new Vector2(11, 1920), new Vector2(10, 1080));
 
         if (this.spriteObject && this.type === "Player") {
-            if (this.vel.x> 0) {
+            if (this.vel.x > 0) {
                 this.spriteObject.setPose('mc_runR');
             } else if (this.vel.x < 0) {
                 this.spriteObject.setPose('mc_runL');
@@ -61,7 +61,7 @@ class Entity {
         }
 
         if (this.trigger) {
-            if(!checkRects(this, this.triggerParent)) {
+            if (!checkRects(this, this.triggerParent)) {
                 this.trigger = undefined;
             }
         }
@@ -69,11 +69,10 @@ class Entity {
     }
 
     resolveCollision(x) {
+        console.log(x.type, this.type);
         if (["platform"].includes(x.type) && ["Player"].includes(this.type)) {
-            let dx,
-                dy;
-            dx = this.pos.x - x.pos.x;
-            dy = this.pos.y - x.pos.y;
+            let dx = this.pos.x - x.pos.x;
+            let dy = this.pos.y - x.pos.y;
 
             if (dx > dy) {
                 if (dy > 0) {
@@ -94,11 +93,22 @@ class Entity {
             }
         }
 
+        if (this.type === 'Player' && x.type === 'wall') {
+            let dx = this.pos.x - x.pos.x;
+            let dy = this.pos.y - x.pos.y;
+
+            if (dx > 0) {
+                this.pos.x = x.pos.x + x.width;
+            } else {
+                this.pos.x = x.pos.x - this.width;
+            }
+        }
+
         if (["Player"].includes(this.type) && ["KTRIGGER"].includes(x.type)) {
             Game.Player.trigger = x.action;
             Game.Player.triggerParent = x;
         }
-        
+
         if (["Player"].includes(this.type) && ["STRIGGER"].includes(x.type)) {
             x.action();
             x.done = true;

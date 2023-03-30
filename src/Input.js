@@ -1,4 +1,4 @@
-Game.Input.handler = function() {
+Game.Input.handler = function () {
     if (Game.Input.isKeyDown(Game.Config.LEFT_KEY)) {
         Game.Player.vel.x += Game.moveVel;
     }
@@ -6,8 +6,9 @@ Game.Input.handler = function() {
         Game.Player.vel.x -= Game.moveVel;
     }
     if (Game.Input.isKeyDown(' ')) {
-        if (!(Game.Player.collisionCount < 1))
-        Game.Player.vel.y = -Game.jumpVel;
+        if (Game.Player.collisionCount >= 1) {
+            Game.Player.vel.y = -Game.jumpVel;
+        }
         Game.Player.collisionCount = 0;
     }
 }
@@ -26,7 +27,7 @@ Game.Input.mouseUpHandler = function (e) {
     }
 }
 
-Game.Input.mouseDownHandler = function(e) {
+Game.Input.mouseDownHandler = function (e) {
     Audio.playSFX('clickSFX.mp3')
     if (e.button === MOUSE_VALUES.RIGHT) {
         Game.Input.rightMouseClicked = true;
