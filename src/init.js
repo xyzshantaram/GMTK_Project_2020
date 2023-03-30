@@ -1,4 +1,14 @@
-let assets;
+import { Game } from "./Constants.js";
+import { Entity } from "./Entity.js";
+import { Vector2 } from "./Vector2.js";
+import { Camera } from "./Camera.js";
+import { AssetManager, FileInfo } from "./AssetManager.js";
+import { mouse } from "./Constants.js";
+
+
+export const assets = new AssetManager(function () {
+    Game.loadScene(assets, 'SceneData.json', () => { console.log('ready.') });
+});
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 function init() {
@@ -37,12 +47,10 @@ function init() {
     Game.entities.push(new Entity(new Vector2(260, 480), "platform", undefined, 350, 10));
     Game.entities.push(new Entity(new Vector2(610, 480), "wall", undefined, 10, 158));
 
-    toilet = new Entity(new Vector2(520, 688), "KTRIGGER", undefined, 32, 32, "yellow");
+    const toilet = new Entity(new Vector2(520, 688), "KTRIGGER", undefined, 32, 32, "yellow");
     toilet.action = () => { alert('todo: embed toilet frame') }
     Game.entities.push(toilet);
     Game.entities.push(new Entity(new Vector2(200, 480), "platform", undefined, 10, 240, "#007cdf"));
-
-
 
     Game.entities.push(Game.Player);
     Game.mainCamera = new Camera(Game.Player, 1);
@@ -76,11 +84,6 @@ function init() {
     window.addEventListener("blur", Game.blurHandler);
     window.addEventListener("focus", Game.focusHandler);
     window.pressedKeys = [];
-
-    assets = new AssetManager(function () {
-        Game.loadScene(assets.getAsset("SceneData.json"), () => { console.log('ready.') });
-    }
-    );
 
     assets.queueItems([
         new FileInfo("ss_4_mc_idle.png", "assets/img/ss_4_mc_idle.png", "img"),

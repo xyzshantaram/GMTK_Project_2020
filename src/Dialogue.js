@@ -1,4 +1,6 @@
-class Prompt {
+import { Game } from "./Constants.js";
+
+export class Prompt {
     constructor(text, speaker, choices) {
         this.text = text;
         this.choices = choices;
@@ -6,8 +8,8 @@ class Prompt {
     }
 
     draw() {
-        for (choice of this.choices) {
-            choice.toHTMLChoice();
+        for (let choice of this.choices) {
+            choice.addToHTML();
         }
         Game.UI.showTextBox();
         Game.UI.setDialogueText(this.text);
@@ -15,7 +17,7 @@ class Prompt {
     }
 }
 
-class Choice {
+export class Choice {
     constructor(text, next, callback) {
         this.next = next;
         this.text = text;
@@ -32,14 +34,14 @@ class Choice {
         return;
     }
 
-    toHTMLChoice() {
+    addToHTML() {
         let btn = document.createElement("div");
         btn.classList.add("button-div");
         btn.choice = this;
         btn.innerHTML = this.text;
-    
+
         btn.addEventListener('click', () => {
-                btn.choice.resolve();
+            btn.choice.resolve();
             // game.audio.snipFX.play();
         })
         Game.UI.btnWrapper.appendChild(btn);
@@ -49,13 +51,13 @@ class Choice {
 Game.Dialogue = {
     script: {
         0: new Prompt("It's time to wake up, captain.", "Autopilot",
-        [new Choice("Guh. Go away.", "1", )])
+            [new Choice("Guh. Go away.", "1",)])
     }
 }
 Game.Dialogue.currentDialogue = "0";
 Game.Dialogue.dialogueActive = false;
 
-Game.Dialogue.setDialogueIndex = function(s) {
+Game.Dialogue.setDialogueIndex = function (s) {
     Game.Dialogue.currentDialogue = s || "0";
     Game.UI.setDialogueText(Game.Dialogue.script[Game.Dialogue.currentDialogue].text);
     Game.UI.setNPCName(Game.Dialogue.script[Game.Dialogue.currentDialogue].speaker);

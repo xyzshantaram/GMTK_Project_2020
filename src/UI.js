@@ -1,3 +1,5 @@
+import { Game } from "./Constants.js";
+
 Game.UI.setMaskOpacity = function (s) {
     Game.UI.mask.style.display = 'initial';
 

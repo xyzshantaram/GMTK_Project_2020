@@ -1,3 +1,7 @@
+import { Game } from "./Constants.js";
+import { Audio } from './Audio.js';
+import { assets } from "./init.js";
+
 Game.Input.handler = function () {
     if (Game.Input.isKeyDown(Game.Config.LEFT_KEY)) {
         Game.Player.vel.x += Game.moveVel;
@@ -28,7 +32,7 @@ Game.Input.mouseUpHandler = function (e) {
 }
 
 Game.Input.mouseDownHandler = function (e) {
-    Audio.playSFX('clickSFX.mp3')
+    Audio.playSFX(assets.getAsset('clickSFX.mp3'))
     if (e.button === MOUSE_VALUES.RIGHT) {
         Game.Input.rightMouseClicked = true;
     }

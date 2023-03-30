@@ -1,4 +1,8 @@
-class Entity {
+import { Vector2 } from "./Vector2.js";
+import { Game } from "./Constants.js";
+import { checkRects } from "./utils.js";
+
+export class Entity {
     constructor(pos, type, sprite, width, height, color) {
         this.pos = pos || new Vector2(0, 0);
         this.vel = new Vector2(0, 0);
@@ -69,7 +73,6 @@ class Entity {
     }
 
     resolveCollision(x) {
-        console.log(x.type, this.type);
         if (["platform"].includes(x.type) && ["Player"].includes(this.type)) {
             let dx = this.pos.x - x.pos.x;
             let dy = this.pos.y - x.pos.y;

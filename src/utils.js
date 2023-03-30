@@ -1,18 +1,17 @@
-"use strict";
+import { Game } from './Constants.js';
+
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function distance(x1, x2, y1, y2) {
-
     const xDist = x2 - x1;
     const yDist = y2 - y1;
 
     return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
 }
 
-function distance(e1, e2) {
-
+function vectorDistance(e1, e2) {
     const xDist = deltaX(e1, e2);
     const yDist = deltaY(e1, e2);
 
@@ -27,7 +26,7 @@ function deltaY(e1, e2) {
     return e2.pos.y - e1.pos.y;
 }
 
-function clamp(value, min, max) {
+export function clamp(value, min, max) {
     if (value < min) return min;
     else if (value > max) return max;
     return value;
@@ -57,7 +56,6 @@ CanvasRenderingContext2D.prototype.fillCircle = function (center, radius, color)
     this.arc(center.x, center.y, radius, 0, 2 * Math.PI);
     this.fillStyle = color || '#FFFFFF';
     this.fill();
-
 }
 
 CanvasRenderingContext2D.prototype.strokeCircle = function (center, radius, color, weight) {
@@ -68,11 +66,7 @@ CanvasRenderingContext2D.prototype.strokeCircle = function (center, radius, colo
     this.stroke();
 }
 
-function circleRectCollision(circle, rect) {
-
-}
-
-class Rectangle {
+export class Rectangle {
     constructor(pos, width, height) {
         this.pos = pos;
         this.width = width;
@@ -88,7 +82,7 @@ class Rectangle {
         Game.ctx.beginPath();
         Game.ctx.strokeStyle = color;
         Game.ctx.rect(this.pos.x, this.pos.y, this.width, this.height);
-        Game.ctx.stroke();        
+        Game.ctx.stroke();
     }
 }
 
@@ -124,16 +118,12 @@ Game.scaleCanvas = function () {
     Game.mainCamera.vHeight = (document.body.clientHeight / 2);
 }
 
-function clearChildren(id) {
-    document.getElementById(id).innerHTML = "";
-}
-
-function checkRects(rect1, rect2) {
+export function checkRects(rect1, rect2) {
     if (rect1.pos.x < rect2.pos.x + rect2.width &&
-      rect1.pos.x + rect1.width > rect2.pos.x &&
-      rect1.pos.y < rect2.pos.y + rect2.height &&
-      rect1.pos.y + rect1.height > rect2.pos.y) {
-      return true;
+        rect1.pos.x + rect1.width > rect2.pos.x &&
+        rect1.pos.y < rect2.pos.y + rect2.height &&
+        rect1.pos.y + rect1.height > rect2.pos.y) {
+        return true;
     }
     return false;
 }

@@ -1,4 +1,7 @@
-class Camera {
+import { Vector2 } from "./Vector2.js";
+import { Game } from "./Constants.js";
+
+export class Camera {
     constructor(focusPoint, speed) {
         this.focusPoint = focusPoint || Game.Player;
         this.targetPos = new Vector2(0, 0)

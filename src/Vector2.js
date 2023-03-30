@@ -1,5 +1,6 @@
-class Vector2 {
+import { clamp } from './utils.js';
 
+export class Vector2 {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -95,7 +96,7 @@ class Vector2 {
         this.y = clamp(this.y, v2.x, v2.y);
     }
 
-    scalarRangeCheck (s) {
+    scalarRangeCheck(s) {
         return this.len() > s;
     }
 
