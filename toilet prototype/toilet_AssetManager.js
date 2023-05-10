@@ -10,15 +10,15 @@ class AssetManager {
         let that = this;
         that.numFiles = that.queue.length;
         for (let x of this.queue) {
-            fetch(x.url, {method: 'GET'}).then((res) => {
+            fetch(x.url, { method: 'GET' }).then((res) => {
                 if (res.ok) {
                     if (x.type === 'img') {
                         res.blob().then((result) => {
                             createImageBitmap(result).then((imgBitmap) => {
                                 that.results[x.name] = imgBitmap;
                             })
-                        }).then(function() {
-                            that.successCount ++;
+                        }).then(function () {
+                            that.successCount++;
                             if (that.isDone()) {
                                 that.callback();
                             }
@@ -26,18 +26,17 @@ class AssetManager {
                     } else if (x.type === 'audio') {
                         res.arrayBuffer().then(buffer => audioCtx.decodeAudioData(buffer)).then(decodedData => {
                             that.results[x.name] = decodedData;
-                        }).then(function() {
-                            that.successCount ++;
+                        }).then(function () {
+                            that.successCount++;
                             if (that.isDone()) {
                                 that.callback();
                             }
                         });
                     } else {
                         res.text().then((result) => {
-                            console.log(result);
                             that.results[x.name] = result;
-                        }).then(function() {
-                            that.successCount ++;
+                        }).then(function () {
+                            that.successCount++;
                             if (that.isDone()) {
                                 that.callback();
                             }
@@ -51,16 +50,16 @@ class AssetManager {
 
     queueItems(arr) { // array of file objects
         for (let x of arr) {
-            if (!this.queue.includes(x)) 
+            if (!this.queue.includes(x))
                 this.queue.push(x);
-            
+
 
 
         }
     }
 
     isDone() {
-        return(this.numFiles == this.successCount);
+        return (this.numFiles == this.successCount);
     }
 
     getAsset(name) {

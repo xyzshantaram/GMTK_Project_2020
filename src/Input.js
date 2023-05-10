@@ -54,7 +54,7 @@ Game.Input.keyDownHandler = function (e) {
 
 Game.Input.keyUpHandler = function (e) {
     window.pressedKeys[e.key] = false
-    if (e.key === 'e' && !Game.isPaused() && Game.Player.trigger) {
+    if (e.key === 'e' && !Game.isPaused()) {
         Game.Player.trigger();
     }
     if (e.key === 'Escape') {
